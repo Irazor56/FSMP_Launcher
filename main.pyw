@@ -30,7 +30,7 @@ def main():
 
     def widget_disconnect():
         launch_button.place_forget()
-        logout_button.place_forget().z
+        logout_button.place_forget()
         login_button.place(x=310, y=315)
         bouton.place(x=305, y=200)
         bouton.deselect()
@@ -219,7 +219,7 @@ def main():
             actual_version1 = version_launcher1.read()
             version_launcher1.close()
 
-        url1 = "https://raw.githubusercontent.com/toniocraft/launcherMC/main/version"
+        url1 = "https://raw.githubusercontent.com/Irazor56/FSMP_Launcher/main/version"
         temp_dir1 = gettempdir()
         temp_file_path1 = os.path.join(temp_dir1, "tmp_version_launcher" +
                                        str(randrange(1, 100000)))
@@ -242,7 +242,7 @@ def main():
                                                      font=('Impact', 20), fill='#BF2727')
                     window.update()
                     print("Downloading the new version...")
-                    url_launcher1 = f"https://github.com/toniocraft/launcherMC/releases/download/" \
+                    url_launcher1 = f"https://github.com/Irazor56/FSMP_Launcher/releases/download" \
                                     f"{online_version1.strip()}/installer.exe"
                     tmp_installer1 = os.path.join(temp_dir1, "tmp_installer" + str(randrange(1, 100000)) + '.exe')
                     urllib.request.urlretrieve(url_launcher1, tmp_installer1, reporthook=reporthook)
@@ -507,7 +507,7 @@ def main():
                                                               ' or install the launcher manually')
                 sys.exit(1)
             else:
-                url = "https://raw.githubusercontent.com/toniocraft/launcherMC/main/version"
+                url = "https://raw.githubusercontent.com/Irazor56/FSMP_Launcher/main/version"
                 temp_dir = gettempdir()
                 temp_file_path = os.path.join(temp_dir, "tmp_version_launcher" +
                                               str(randrange(1, 100000)))
@@ -515,7 +515,7 @@ def main():
                 with open(temp_file_path, "r") as version_online:
                     online_version = version_online.read().strip()
                 print("Downloading the new version...")
-                url_launcher = f"https://github.com/toniocraft/launcherMC/releases/download/{online_version.strip()}" \
+                url_launcher = f"https://github.com/Irazor56/FSMP_Launcher/releases/download/{online_version.strip()}" \
                                f"/installer.exe"
                 tmp_installer = os.path.join(temp_dir, "tmp_installer" + str(randrange(1, 100000)) + '.exe')
                 urllib.request.urlretrieve(url_launcher, tmp_installer)
@@ -585,10 +585,10 @@ def main():
     update_mods()
     update_launcher()
 
-    a.place(x=70, y=35)
-    b.place(x=115, y=35)
-    c.place(x=160, y=35)
-    d.place(x=205, y=35)
+    #a.place(x=70, y=35)
+    #b.place(x=115, y=35)
+    #c.place(x=160, y=35)
+    #d.place(x=205, y=35)
     setting_button.place(x=550, y=35)
 
     # applique les bons widgets en fonction de si l'utilisateur est logger sur le launcher ou non
