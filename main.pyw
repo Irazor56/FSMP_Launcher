@@ -16,6 +16,7 @@ from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QLabel, QPushButton, QWidget
 from cryptography.fernet import Fernet
 from customtkinter import *
+import re
 
 
 # bug impossible d'ouvrir deux fois de suite une QApplication
@@ -187,21 +188,22 @@ def main():
                 print(status)
                 progressbar.set(status / 100)
                 window.update_idletasks()
+            url_global = request.urlretrieve("https://fsmp.websr.fr/launcher/mods/")
+            #pattern = re.compile('*.jar"') #the pattern actually creates duplicates in the list
 
-            # obfuscate
-            url1 = "https://4d2a096c-ed43-4627-a525-cdcf1eacad66.usrfiles.com/archives/" \
-                   "4d2a09_2f28b60601a747e69f8c195f929d9038.jar"
-            request.urlretrieve(url1, f'{minecraft_directory}/mods/{mods_list[1]}', reporthook=reporthook)
+            #filelist = pattern.findall(string)
+            #print(filelist)
+            #url1 = "https://fsmp.websr.fr/launcher/mods/" \
+                   #"embeddium-0.2.10+mc1.20.1.jar"
+            #request.urlretrieve(url1, f'{minecraft_directory}.minecraft/mods/{mods_list[0]}', reporthook=reporthook)
 
-            # cgm
-            url2 = 'https://4d2a096c-ed43-4627-a525-cdcf1eacad66.usrfiles.com/archives/' \
-                   '4d2a09_733668f3656742b1a059513fcb900d70.jar'
-            request.urlretrieve(url2, f'{minecraft_directory}/mods/{mods_list[0]}', reporthook=reporthook)
+            #url2 = 'https://fsmp.websr.fr/launcher/mods/' \
+                   #'embeddiumplus-1.20.1-v1.0.1.jar'
+            #request.urlretrieve(url2, f'{minecraft_directory}/mods/{mods_list[1]}', reporthook=reporthook)
 
-            # optifine
-            url3 = "https://4d2a096c-ed43-4627-a525-cdcf1eacad66.usrfiles.com/archives/" \
-                   "4d2a09_b924f7094dbe4f3ea03af03f20c1e818.jar"
-            request.urlretrieve(url3, f'{minecraft_directory}/mods/{mods_list[2]}', reporthook=reporthook)
+            #url3 = "https://fsmp.websr.fr/launcher/mods/" \
+                   #"oculus-mc1.20.1-1.6.9.jar"
+            #request.urlretrieve(url3, f'{minecraft_directory}/mods/{mods_list[2]}', reporthook=reporthook)
             cancan.delete(text_update)
             progressbar.destroy()
 
@@ -256,8 +258,8 @@ def main():
         options = {"username": parameter["name"],
                    "uuid": parameter["id"],
                    "token": parameter["access_token"],
-                   "launcherName": 'KipikCube Launcher',
-                   "launcherVersion": "2.0",
+                   "launcherName": 'FSMP_Launcheur',
+                   "launcherVersion": "0.0.1",
                    "customResolution": launcher_ini.getboolean('SETTING_MINECRAFT', 'custom_resolution'),
                    "resolutionWidth": launcher_ini.get('SETTING_MINECRAFT', 'width'),
                    "resolutionHeight": launcher_ini.get('SETTING_MINECRAFT', 'height'),
@@ -371,22 +373,14 @@ def main():
                     reset_launcher.add_section('SOCIAL_NETWORK')
                     reset_launcher.add_section('SETTING_FRAME')
                     reset_launcher.add_section('SETTING_MINECRAFT')
-                    reset_launcher['DEFAULT']['mods_list'] = "['cgm-1.2.6-1.16.5.jar', 'obfuscate-0.6.3-1.16.5.jar'," \
-                                                             "'OptiFine_1.16.5_HD_U_G8.jar']"
+                    reset_launcher['DEFAULT']['mods_list'] = "['embeddiumplus-1.20.1-v1.0.1.jar', 'embeddium-0.2.10+mc1.20.1.jar'," \
+                                                             "'oculus-mc1.20.1-1.6.9.jar']"
                     reset_launcher['DEFAULT']['vanilla_version'] = "1.16.5"
-                    reset_launcher['DEFAULT']['launcher_title'] = "KipikCube Launcher"
+                    reset_launcher['DEFAULT']['launcher_title'] = "FSMP Launcher"
                     reset_launcher['DEFAULT']['geometry'] = "720x480"
-                    reset_launcher['SOCIAL_NETWORK']['twitch'] = "https://www.twitch.tv/toniocraft07"
-                    reset_launcher['SOCIAL_NETWORK']['youtube'] = \
-                        "https://www.youtube.com/channel/UCyVYspauqSCmLuqtKdMbvZw"
-                    reset_launcher['SOCIAL_NETWORK']['site'] = "https://toniocraft.wixsite.com/kipikcube/"
-                    reset_launcher['SOCIAL_NETWORK']['discord'] = "https://discord.gg/TX2djczBa6"
-                    reset_launcher['SOCIAL_NETWORK']['border_button_color'] = "black"
-                    reset_launcher['SOCIAL_NETWORK']['border_width'] = "0"
-                    reset_launcher['SOCIAL_NETWORK']['button_width'] = "0"
                     reset_launcher['SETTING_FRAME']['setting_title'] = "Settings"
                     reset_launcher['SETTING_FRAME']['setting_geometry'] = "600x350"
-                    reset_launcher['SETTING_MINECRAFT']['server'] = "kipikcube.tk"
+                    reset_launcher['SETTING_MINECRAFT']['server'] = "fermentationlore.mine.fun"
                     reset_launcher['SETTING_MINECRAFT']['auto_connect'] = "False"
                     reset_launcher['SETTING_MINECRAFT']['show_console'] = "False"
                     reset_launcher['SETTING_MINECRAFT']['custom_resolution'] = "False"
@@ -405,7 +399,7 @@ def main():
         setting_window.geometry(setting_geometry)
         setting_window.title(setting_title)
         setting_window.resizable(width=False, height=False)
-        setting_window.iconbitmap('assets/kipikcube.ico')
+        setting_window.iconbitmap('assets/fsmp.ico')
         setting_window.grab_set()
 
         config_dict = launcher_ini['SETTING_MINECRAFT']
@@ -492,7 +486,7 @@ def main():
         with open('config.ini', 'w') as config_file:
             config_file.write('[LOGIN]\nremember = 0')
 
-    key = b''
+    key = b'n95N-H8ZmyM2lXghc51XfjU6meXC3DlWQ5dJOPMaAdo='
     id_ini = ConfigParser()
     launcher_ini = ConfigParser()
     config_ini = ConfigParser()
@@ -542,12 +536,12 @@ def main():
         create_config_file()
         remember = 0
 
-    set_appearance_mode("dark")  # Modes: system (default), light, dark
-    set_default_color_theme("green")  # Themes: blue (default), dark-blue, green
+    #set_appearance_mode("dark")  # Modes: system (default), light, dark
+    #set_default_color_theme("green")  # Themes: blue (default), dark-blue, green
 
     window = CTk()
     window.title(launcher_title)
-    window.iconbitmap('assets/kipikcube.ico')
+    window.iconbitmap('assets/fsmp.ico')
     window.geometry(dimension)
     window.resizable(width=False, height=False)
     fond = PhotoImage(file="assets/fond.png")
