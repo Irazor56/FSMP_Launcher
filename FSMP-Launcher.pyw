@@ -566,17 +566,17 @@ def main():
 
     # Répertoire de Minecraft
     minecraft_directory = minecraft_launcher_lib.utils.get_minecraft_directory()
-    # Trouve la dernière version de forge en fonction de la version vanilla (1.16.5)
-    forge_version = minecraft_launcher_lib.forge.find_forge_version(vanilla_version)
-    print(f"forge version : {forge_version}")
+    # Installe la version de forge indiqué
+    forge_version = "1.20.1-47.1.3"
+    #print(f"forge version : {forge_version}")
     # Get Minecraft directory
-    print(f"Minecraft directory : {minecraft_directory}")
+    #print(f"Minecraft directory : {minecraft_directory}")
     # reformat le nom de la dernière version pour qu'elle fonctionne (ex : 1.16.5-1.68.3 -> 1.16.5-forge-1.68.3)
     full_name_forge_version = forge_version.replace("-", "-forge-")
     print(f"Full name forge version : {full_name_forge_version}")
     # Vérification si la version existe, mais pas si elle est déjà téléchargée
-    is_valid = minecraft_launcher_lib.forge.is_forge_version_valid(forge_version)
-    print(f"Is forge version valid : {is_valid}")
+    #is_valid = minecraft_launcher_lib.forge.is_forge_version_valid(forge_version)
+    #print(f"Is forge version valid : {is_valid}")
     # Affiche les versions d'installées
     installed_version = minecraft_launcher_lib.utils.get_installed_versions(minecraft_directory)
     print(f"Installed versions : {installed_version}")
